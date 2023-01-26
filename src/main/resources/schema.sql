@@ -1,0 +1,18 @@
+CREATE TABLE people (
+people_id VARCHAR(40) NOT NULL,
+name VARCHAR(255),
+birth_date DATE,
+CONSTRAINT people_pk1 PRIMARY KEY(people_id)
+);
+
+CREATE TABLE address (
+address_id VARCHAR(40) NOT NULL,
+people_id VARCHAR(40) NOT NULL,
+backyard VARCHAR(100),
+cep VARCHAR(12),
+number VARCHAR(20),
+city VARCHAR(100),
+primary_address BOOLEAN DEFAULT false,
+CONSTRAINT address_pk1 PRIMARY KEY(address_id),
+CONSTRAINT address_fk1 FOREIGN KEY(people_id) REFERENCES people(people_id)
+);
