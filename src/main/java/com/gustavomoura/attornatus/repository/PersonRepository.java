@@ -12,9 +12,9 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends CrudRepository<PersonEntity, String> {
 
-    @Query("SELECT p FROM PersonRepository p WHERE p.name = :name")
+    @Query("SELECT p FROM PersonEntity p WHERE p.name = :name")
     Optional<PersonEntity> findPersonByName(@Param("name") String name);
 
-    @Query("SELECT p FROM PersonRepository p")
+    @Query("SELECT p FROM PersonEntity p")
     List<PersonEntity> findAll();
 }
