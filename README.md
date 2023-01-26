@@ -32,3 +32,12 @@ Será levado em avaliação  <br>
 Estrutura, arquitetura e organização do projeto   <br>
 Boas práticas de programação   <br>
 Alcance dos objetivos propostos. <br>
+<br>
+Pergutas: <br>
+
+1) Durante a implementação de uma nova funcionalidade de software solicitada, quais critérios você avalia e implementa para garantia de qualidade de software? <br>
+Quando uma nova funcionalidade é feita, avaliar o impacto dela nas outras funcionalidades já criadas e se tem alguém trabalhando nelas é super importante, então crio uma branch da master(atualizada) e inicio a implementação. Após isso, crio os testes unitários e de integração (caso for necessário). Subo o servidor e testo o código no postman. Após isso envio o PR para code review. <br>
+
+2) Em qual etapa da implementação você considera a qualidade de software? <br>
+	Durante toda a implementação, desde a criação do projeto à entrega do mesmo, considerar a qualidade da implementação apenas no final trará muito retrabalho e aumentará o tempo estimado da entrega, na minha visão isso pode ocasionar diversos problemas durante o desenvolvimento. <br>
+
