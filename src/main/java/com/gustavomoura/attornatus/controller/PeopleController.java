@@ -69,7 +69,7 @@ public class PeopleController {
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/v1/people", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PeopleResponse>> findAllPeoples() {
-        return new ResponseEntity<>(peopleService.getAllPeoples().stream()
+        return new ResponseEntity<>(peopleService.findAllPeoples().stream()
                 .map(peopleMapper::toResponse)
                 .collect(Collectors.toList()),
                 HttpStatus.OK);

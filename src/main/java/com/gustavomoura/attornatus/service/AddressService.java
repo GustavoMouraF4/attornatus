@@ -24,22 +24,19 @@ public class AddressService {
     }
 
 
-    public void setAddressToPrimary(UUID peopleId, UUID addressId) {
-        var addresses = findAllAddress(peopleId);
-
-        addresses.stream().filter(AddressEntity::getPrimaryAddress)
-                .map(address -> {
+    public List<AddressEntity> setAddressToPrimary(UUID addressIdToUpdate, List<AddressEntity> addressEntities) {
+        addressEntities.stream().filter(AddressEntity::getPrimaryAddress)
+                .forEach(address -> {
                     address.setPrimaryAddress(false);
-
                     addressRepository.save(address);
-
-                    return address;
-                })
-                .filter(address -> address.getId().equals(addressId))
-                .map(address -> {
-                    address.setPrimaryAddress(true);
-
-                    return addressRepository.save(address);
                 });
+
+        addressEntities.stream().filter(address -> address.getId().equals(addressIdToUpdate))
+                .forEach(address -> {
+                    address.setPrimaryAddress(true);
+                    addressRepository.save(address);
+                });
+
+        return addressEntities;
     }
 }
