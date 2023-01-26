@@ -8,7 +8,7 @@ import lombok.Data;
 public class AddressResponse {
 
     private String id;
-    private String peopleId;
+    private String personId;
     private String backyard;
     private String cep;
     private String number;

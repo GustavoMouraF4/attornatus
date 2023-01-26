@@ -12,15 +12,15 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "people")
+@Table(name = "person")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PeopleEntity {
+public class PersonEntity {
 
     @Id
-    @Column(name = "people_id")
+    @Column(name = "person_id")
     private String id;
 
     private String name;
