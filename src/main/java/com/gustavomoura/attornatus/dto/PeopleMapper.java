@@ -5,8 +5,6 @@ import com.gustavomoura.attornatus.model.CompletePeopleEntity;
 import com.gustavomoura.attornatus.model.PeopleEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class PeopleMapper {
 

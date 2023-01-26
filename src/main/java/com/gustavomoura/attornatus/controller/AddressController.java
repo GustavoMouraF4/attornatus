@@ -48,7 +48,8 @@ public class AddressController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> setAddressToPrimary(@PathVariable("peopleId") UUID peopleId,
                                                     @PathVariable("addressId") UUID addressId) {
-        this.addressService.setAddressToPrimary(peopleId, addressId);
+        var addressEntities = this.addressService.findAllAddress(peopleId);
+        this.addressService.setAddressToPrimary(addressId, addressEntities);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

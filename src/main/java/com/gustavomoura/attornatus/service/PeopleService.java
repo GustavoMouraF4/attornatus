@@ -49,7 +49,7 @@ public class PeopleService {
                 new PeopleNotFoundException("Not found people with id: " + peopleId));
     }
 
-    public List<PeopleEntity> getAllPeoples() {
+    public List<PeopleEntity> findAllPeoples() {
         return peopleRepository.findAll();
     }
 
