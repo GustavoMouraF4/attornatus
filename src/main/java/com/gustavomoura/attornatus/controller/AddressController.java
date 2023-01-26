@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,7 +23,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/v1", method = RequestMethod.POST,
+    @RequestMapping(path = "/v1/address", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AddressResponse> createAddress(@RequestBody AddressRequest request) {
@@ -35,8 +34,8 @@ public class AddressController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/v1/{peopleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AddressResponse>> findAllAddress(@PathVariable("peopleId") UUID peopleId) {
+    @RequestMapping(path = "/v1/address/{peopleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AddressResponse>> findAllAddress(@PathVariable("peopleId") String peopleId) {
         return new ResponseEntity<>(addressService.findAllAddress(peopleId).stream()
                 .map(mapper::toResponse)
                 .collect(Collectors.toList()),
@@ -44,10 +43,10 @@ public class AddressController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/v1/{peopleId}/{addressId}", method = RequestMethod.PATCH,
+    @RequestMapping(path = "/v1/address/{peopleId}/{addressId}", method = RequestMethod.PATCH,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> setAddressToPrimary(@PathVariable("peopleId") UUID peopleId,
-                                                    @PathVariable("addressId") UUID addressId) {
+    public ResponseEntity<Void> setAddressToPrimary(@PathVariable("peopleId") String peopleId,
+                                                    @PathVariable("addressId") String addressId) {
         var addressEntities = this.addressService.findAllAddress(peopleId);
         this.addressService.setAddressToPrimary(addressId, addressEntities);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);

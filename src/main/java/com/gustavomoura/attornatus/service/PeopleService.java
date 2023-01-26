@@ -21,15 +21,15 @@ public class PeopleService {
     private final PeopleRepository peopleRepository;
     private final AddressService addressService;
     public PeopleEntity createPeople(PeopleEntity entityToCreate) {
-        entityToCreate.setId(UUID.randomUUID());
+        entityToCreate.setId(UUID.randomUUID().toString());
         return peopleRepository.save(entityToCreate);
     }
 
     public CompletePeopleEntity createCompletePeople(PeopleEntity people, AddressEntity address) {
-        people.setId(UUID.randomUUID());
+        people.setId(UUID.randomUUID().toString());
         var peopleCreated = peopleRepository.save(people);
 
-        address.setId(UUID.randomUUID());
+        address.setId(UUID.randomUUID().toString());
         address.setPeopleId(peopleCreated.getId());
         var addressCreated = addressService.createAddress(address);
 
@@ -44,8 +44,8 @@ public class PeopleService {
     }
 
 
-    public PeopleEntity findPeopleById(UUID peopleId) {
-        return peopleRepository.findPeopleById(peopleId).orElseThrow(() ->
+    public PeopleEntity findPeopleById(String peopleId) {
+        return peopleRepository.findById(peopleId).orElseThrow(() ->
                 new PeopleNotFoundException("Not found people with id: " + peopleId));
     }
 
@@ -53,7 +53,7 @@ public class PeopleService {
         return peopleRepository.findAll();
     }
 
-    public PeopleEntity updatePeople(UUID peopleId, PeopleEntity people) {
+    public PeopleEntity updatePeople(String peopleId, PeopleEntity people) {
         var peopleToUpdate = findPeopleById(peopleId);
 
         peopleToUpdate.setName(people.getName());

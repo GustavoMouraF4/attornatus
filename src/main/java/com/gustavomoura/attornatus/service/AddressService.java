@@ -15,16 +15,16 @@ public class AddressService {
     private final AddressRepository addressRepository;
 
     public AddressEntity createAddress(AddressEntity entity) {
-        entity.setId(UUID.randomUUID());
+        entity.setId(UUID.randomUUID().toString());
         return addressRepository.save(entity);
     }
 
-    public List<AddressEntity> findAllAddress(UUID peopleId) {
+    public List<AddressEntity> findAllAddress(String peopleId) {
         return addressRepository.findAllByPeopleId(peopleId);
     }
 
 
-    public List<AddressEntity> setAddressToPrimary(UUID addressIdToUpdate, List<AddressEntity> addressEntities) {
+    public List<AddressEntity> setAddressToPrimary(String addressIdToUpdate, List<AddressEntity> addressEntities) {
         addressEntities.stream().filter(AddressEntity::getPrimaryAddress)
                 .forEach(address -> {
                     address.setPrimaryAddress(false);
