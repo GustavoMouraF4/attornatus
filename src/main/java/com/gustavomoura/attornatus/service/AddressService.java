@@ -14,16 +14,32 @@ public class AddressService {
 
     private final AddressRepository addressRepository;
 
+    /**
+     * Create address to a person
+     * @param entity
+     * @return address created
+     */
     public AddressEntity createAddress(AddressEntity entity) {
         entity.setId(UUID.randomUUID().toString());
         return addressRepository.save(entity);
     }
 
-    public List<AddressEntity> findAllAddress(String peopleId) {
-        return addressRepository.findAllByPeopleId(peopleId);
+    /**
+     * Find all of a person's addresses
+     * @param personId
+     * @return List with all of a person's addresses
+     */
+    public List<AddressEntity> findAllAddress(String personId) {
+        return addressRepository.findAllByPersonId(personId);
     }
 
 
+    /**
+     * This method exchanges the person's main address, leaving the old one as false and the new as true
+     * @param addressIdToUpdate
+     * @param addressEntities List with all of a person's addresses
+     * @return List of all addresses of a person to facilitate unitary testing
+     */
     public List<AddressEntity> setAddressToPrimary(String addressIdToUpdate, List<AddressEntity> addressEntities) {
         addressEntities.stream().filter(AddressEntity::getPrimaryAddress)
                 .forEach(address -> {

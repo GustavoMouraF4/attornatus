@@ -22,8 +22,8 @@ public class AddressEntity {
     @Column(name = "address_id")
     private String id;
 
-    @Column(name = "people_id")
-    private String peopleId;
+    @Column(name = "person_id")
+    private String personId;
 
     private String backyard;
     private String cep;

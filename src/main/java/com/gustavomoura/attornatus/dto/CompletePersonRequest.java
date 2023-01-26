@@ -1,22 +1,16 @@
-package com.gustavomoura.attornatus.model;
+package com.gustavomoura.attornatus.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CompletePeopleEntity {
+public class CompletePersonRequest {
 
-    private String peopleId;
     private String name;
     private LocalDate birthDate;
-    private String addressId;
     private String backyard;
     private String cep;
     private String number;

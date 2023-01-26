@@ -7,9 +7,9 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class CompletePeopleResponse {
+public class CompletePersonResponse {
 
-    private String peopleId;
+    private String personId;
     private String name;
     private LocalDate birthDate;
     private String addressId;

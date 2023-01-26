@@ -2,14 +2,16 @@ package com.gustavomoura.attornatus.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Data
 @Builder
-public class PeopleResponse {
+@Data
+public class PersonRequest {
 
-    private String id;
     private String name;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 }

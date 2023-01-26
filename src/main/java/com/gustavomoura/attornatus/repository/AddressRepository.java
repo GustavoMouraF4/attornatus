@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends CrudRepository<AddressEntity, String> {
 
-    List<AddressEntity> findAllByPeopleId(String peopleId);
+    List<AddressEntity> findAllByPersonId(String personId);
 }

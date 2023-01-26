@@ -27,8 +27,8 @@ class AddressServiceTest {
     @Test
     void shouldCreateAddress() {
         var addressId = UUID.randomUUID().toString();
-        var peopleId = UUID.randomUUID().toString();
-        var address = createAddress(peopleId);
+        var personId = UUID.randomUUID().toString();
+        var address = createAddress(personId);
 
         when(addressRepository.save(address))
                 .thenAnswer(invocation -> {
@@ -41,7 +41,7 @@ class AddressServiceTest {
         var result = addressService.createAddress(address);
 
         assertEquals(result.getId(), addressId);
-        assertEquals(result.getPeopleId(), peopleId);
+        assertEquals(result.getPersonId(), personId);
         assertEquals(result.getCity(), address.getCity());
         assertEquals(result.getNumber(), address.getNumber());
         assertEquals(result.getCep(), address.getCep());
@@ -53,22 +53,22 @@ class AddressServiceTest {
     void shouldFindAllAddress() {
         var firstAddressId = UUID.randomUUID().toString();
         var secondAddressId = UUID.randomUUID().toString();
-        var peopleId = UUID.randomUUID().toString();
-        var firstAddress = createAddress(peopleId);
+        var personId = UUID.randomUUID().toString();
+        var firstAddress = createAddress(personId);
         firstAddress.setId(firstAddressId);
-        var secondAddress = createAddress(peopleId);
+        var secondAddress = createAddress(personId);
         secondAddress.setId(secondAddressId);
         secondAddress.setCity("São Paulo");
         secondAddress.setNumber("78901");
         secondAddress.setCep("97640890");
 
-        when(addressRepository.findAllByPeopleId(peopleId))
+        when(addressRepository.findAllByPersonId(personId))
                 .thenReturn(List.of(firstAddress, secondAddress));
 
-        var result = addressService.findAllAddress(peopleId);
+        var result = addressService.findAllAddress(personId);
 
         assertTrue(result.stream().allMatch(address -> Objects.nonNull(address.getId()) &&
-                                                       Objects.nonNull(address.getPeopleId()) &&
+                                                       Objects.nonNull(address.getPersonId()) &&
                                                        Objects.nonNull(address.getCity()) &&
                                                        Objects.nonNull(address.getNumber()) &&
                                                        Objects.nonNull(address.getCep()) &&
@@ -80,10 +80,10 @@ class AddressServiceTest {
     void shouldSetAddressToPrimary() {
         var firstAddressId = UUID.randomUUID().toString();
         var secondAddressId = UUID.randomUUID().toString();
-        var peopleId = UUID.randomUUID().toString();
-        var firstAddress = createAddress(peopleId);
+        var personId = UUID.randomUUID().toString();
+        var firstAddress = createAddress(personId);
         firstAddress.setId(firstAddressId);
-        var secondAddress = createAddress(peopleId);
+        var secondAddress = createAddress(personId);
         secondAddress.setId(secondAddressId);
         secondAddress.setCity("São Paulo");
         secondAddress.setNumber("78901");
@@ -114,9 +114,9 @@ class AddressServiceTest {
         assertTrue(result.get(1).getPrimaryAddress());
     }
 
-    private AddressEntity createAddress(String peopleId) {
+    private AddressEntity createAddress(String personId) {
         return AddressEntity.builder()
-                .peopleId(peopleId)
+                .personId(personId)
                 .city("Porto Alegre")
                 .number("12345")
                 .cep("91096340")

@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class AddressRequest {
 
-    private String peopleId;
+    private String personId;
     private String backyard;
     private String cep;
     private String number;
