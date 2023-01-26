@@ -9,16 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 @EnableJpaRepositories
-public interface PeopleRepository extends CrudRepository<PeopleEntity, UUID> {
+public interface PeopleRepository extends CrudRepository<PeopleEntity, String> {
 
     @Query("SELECT p FROM PeopleEntity p WHERE p.name = :name")
     Optional<PeopleEntity> findPeopleByName(@Param("name") String name);
 
-    Optional<PeopleEntity> findPeopleById(UUID peopleId);
-
+    @Query("SELECT p FROM PeopleEntity p")
     List<PeopleEntity> findAll();
 }

@@ -4,16 +4,15 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Builder
 public class CompletePeopleResponse {
 
-    private UUID peopleId;
+    private String peopleId;
     private String name;
     private LocalDate birthDate;
-    private UUID addressId;
+    private String addressId;
     private String backyard;
     private String cep;
     private String number;

@@ -31,7 +31,7 @@ class PeopleServiceTest {
 
     @Test
     void shouldCreatePeople() {
-        var peopleId = UUID.randomUUID();
+        var peopleId = UUID.randomUUID().toString();
         var peopleEntity = createPeopleEntity();
 
         when(peopleRepository.save(peopleEntity))
@@ -51,8 +51,8 @@ class PeopleServiceTest {
 
     @Test
     void shouldCreateCompletePeople() {
-        var addressId = UUID.randomUUID();
-        var peopleId = UUID.randomUUID();
+        var addressId = UUID.randomUUID().toString();
+        var peopleId = UUID.randomUUID().toString();
         var address = createAddress(peopleId);
         var people = createPeopleEntity();
         address.setId(null);
@@ -89,7 +89,7 @@ class PeopleServiceTest {
 
     @Test
     void shouldFindPeopleByName() {
-        var peopleId = UUID.randomUUID();
+        var peopleId = UUID.randomUUID().toString();
         var people = createPeopleEntity();
         people.setId(peopleId);
 
@@ -105,11 +105,11 @@ class PeopleServiceTest {
 
     @Test
     void shouldFindPeopleById() {
-        var peopleId = UUID.randomUUID();
+        var peopleId = UUID.randomUUID().toString();
         var people = createPeopleEntity();
         people.setId(peopleId);
 
-        when(peopleRepository.findPeopleById(people.getId()))
+        when(peopleRepository.findById(people.getId()))
                 .thenReturn(Optional.of(people));
 
         var result = peopleService.findPeopleById(people.getId());
@@ -121,10 +121,10 @@ class PeopleServiceTest {
 
     @Test
     void shouldFindAllPeoples() {
-        var firstPeopleId = UUID.randomUUID();
+        var firstPeopleId = UUID.randomUUID().toString();
         var firstPeople = createPeopleEntity();
         firstPeople.setId(firstPeopleId);
-        var secondPeopleId = UUID.randomUUID();
+        var secondPeopleId = UUID.randomUUID().toString();
         var secondPeople = createPeopleEntity();
         secondPeople.setId(secondPeopleId);
 
@@ -141,7 +141,7 @@ class PeopleServiceTest {
 
     @Test
     void shouldUpdatePeople() {
-        var peopleId = UUID.randomUUID();
+        var peopleId = UUID.randomUUID().toString();
         var peopleToUpdate = createPeopleEntity();
         peopleToUpdate.setId(peopleId);
         var people = PeopleEntity.builder()
@@ -151,7 +151,7 @@ class PeopleServiceTest {
                 .build();
 
 
-        when(peopleRepository.findPeopleById(peopleToUpdate.getId()))
+        when(peopleRepository.findById(peopleToUpdate.getId()))
                 .thenReturn(Optional.of(people));
 
         when(peopleRepository.save(people)).thenReturn(people);
@@ -170,7 +170,7 @@ class PeopleServiceTest {
                 .build();
     }
 
-    private AddressEntity createAddress(UUID peopleId) {
+    private AddressEntity createAddress(String peopleId) {
         return AddressEntity.builder()
                 .peopleId(peopleId)
                 .city("Porto Alegre")

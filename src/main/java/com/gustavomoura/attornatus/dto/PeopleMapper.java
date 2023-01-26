@@ -73,7 +73,7 @@ public class PeopleMapper {
                 .cep(request.getCep())
                 .number(request.getNumber())
                 .city(request.getCity())
-                .primaryAddress(true)
+                .primaryAddress(request.getPrimaryAddress())
                 .build();
     }
 

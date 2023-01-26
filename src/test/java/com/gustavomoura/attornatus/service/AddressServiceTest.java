@@ -26,8 +26,8 @@ class AddressServiceTest {
 
     @Test
     void shouldCreateAddress() {
-        var addressId = UUID.randomUUID();
-        var peopleId = UUID.randomUUID();
+        var addressId = UUID.randomUUID().toString();
+        var peopleId = UUID.randomUUID().toString();
         var address = createAddress(peopleId);
 
         when(addressRepository.save(address))
@@ -51,9 +51,9 @@ class AddressServiceTest {
 
     @Test
     void shouldFindAllAddress() {
-        var firstAddressId = UUID.randomUUID();
-        var secondAddressId = UUID.randomUUID();
-        var peopleId = UUID.randomUUID();
+        var firstAddressId = UUID.randomUUID().toString();
+        var secondAddressId = UUID.randomUUID().toString();
+        var peopleId = UUID.randomUUID().toString();
         var firstAddress = createAddress(peopleId);
         firstAddress.setId(firstAddressId);
         var secondAddress = createAddress(peopleId);
@@ -78,9 +78,9 @@ class AddressServiceTest {
 
     @Test
     void shouldSetAddressToPrimary() {
-        var firstAddressId = UUID.randomUUID();
-        var secondAddressId = UUID.randomUUID();
-        var peopleId = UUID.randomUUID();
+        var firstAddressId = UUID.randomUUID().toString();
+        var secondAddressId = UUID.randomUUID().toString();
+        var peopleId = UUID.randomUUID().toString();
         var firstAddress = createAddress(peopleId);
         firstAddress.setId(firstAddressId);
         var secondAddress = createAddress(peopleId);
@@ -114,7 +114,7 @@ class AddressServiceTest {
         assertTrue(result.get(1).getPrimaryAddress());
     }
 
-    private AddressEntity createAddress(UUID peopleId) {
+    private AddressEntity createAddress(String peopleId) {
         return AddressEntity.builder()
                 .peopleId(peopleId)
                 .city("Porto Alegre")

@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,7 +23,7 @@ public class PeopleController {
     private final PeopleMapper peopleMapper;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/v1", method = RequestMethod.POST,
+    @RequestMapping(path = "/v1/people", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PeopleResponse> createPeople(@RequestBody PeopleRequest request) {
@@ -35,7 +34,7 @@ public class PeopleController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/v1/people", method = RequestMethod.POST,
+    @RequestMapping(path = "/v1/people/address", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CompletePeopleResponse> createCompletePeople(@RequestBody CompletePeopleRequest request) {
@@ -51,7 +50,7 @@ public class PeopleController {
     @RequestMapping(path = "/v1/people/{id}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PeopleResponse> updatePeople(@PathVariable("id") UUID peopleId,
+    public ResponseEntity<PeopleResponse> updatePeople(@PathVariable("id") String peopleId,
                                                        @RequestBody PeopleRequest request) {
         var people = peopleMapper.toEntity(request);
 
