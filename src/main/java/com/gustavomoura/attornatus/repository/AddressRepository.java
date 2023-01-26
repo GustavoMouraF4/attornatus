@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface AddressRepository extends CrudRepository<AddressEntity, UUID> {
 
-    List<AddressEntity> findAllByPeopleId(UUID personId);
+    List<AddressEntity> findAllByPeopleId(UUID peopleId);
 }
